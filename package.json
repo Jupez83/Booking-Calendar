@@ -1,0 +1,25 @@
+{
+  "name": "booking_calendar",
+  "version": "0.0.1",
+  "description": "Generic booking calendar for everybody. There are many kinds of applications for the calendar. For example, the calendar will be used for manage to use of premises or appointments to diffenrent kinds of services.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jupez83/Booking-Calendar.git"
+  },
+  "keywords": [
+    "booking",
+    "calendar",
+    "opensource",
+    "appointments"
+  ],
+  "author": "Jussi Ahtiainen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jupez83/booking_calendar/issues"
+  },
+  "homepage": "https://github.com/Jupez83/booking_calendar#readme"
+}
