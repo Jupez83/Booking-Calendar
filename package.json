@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/Jupez83/booking_calendar/issues"
   },
-  "homepage": "https://github.com/Jupez83/booking_calendar#readme"
+  "homepage": "https://github.com/Jupez83/booking_calendar#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
