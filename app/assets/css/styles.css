@@ -1,0 +1,8 @@
+.form_auth {
+    width: 300px;
+    margin: 20px auto;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #EEE;
+}

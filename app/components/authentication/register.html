@@ -1,0 +1,18 @@
+<form class="form_auth">
+  <h4>Registration</h4>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="auth.username"/>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Enter password" ng-model="auth.password"/>
+  </div>
+  <div class="form-group">
+    <label for="conf-password">Re-type password</label>
+    <input type="password" class="form-control" id="conf-password" placeholder="Re-type password"/>
+  </div>
+  <button type="submit" class="btn btn-default" ng-click="auth.register()">Register</button>
+  <p class="message"></p>
+</form>
+{{auth}}
