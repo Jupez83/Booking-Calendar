@@ -6,6 +6,7 @@ exports.login = function(req, res) {
       res.send({status:err});
     } else {
       if (data) {
+        req.session.username = data.username;
         res.send({status:'OK'});
       } else {
         res.send({status:'FAILED'});

@@ -10,7 +10,6 @@
   <link href="/assets/css/styles.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-
   <!-- Static navbar -->
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -54,15 +53,19 @@
     <div ui-view></div>
   </div>
 
+  <br/><a href="/logout">Log out</a>
+
   <!-- include Javascript modules -->
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
   <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./bower_components/angular/angular.min.js"></script>
   <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  
+  <!-- include own scripts -->
   <script src="./app.js"></script>
-  <script src="./components/authentication/registerController.js"></script>
-  <script src="./components/authentication/loginController.js"></script>
+  <script src="./components/authentication/authService.js"></script>
+  <script src="./components/authentication/authController.js"></script>
   
 </body>
 </html>

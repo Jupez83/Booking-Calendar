@@ -22,4 +22,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/auth', auth);
 
+app.get('/logout', function(req, res) { 
+  req.session.destroy();
+  res.redirect('/');
+});
+
 app.listen(3000);
