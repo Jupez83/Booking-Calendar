@@ -4,7 +4,7 @@ var isLoggedIn = function($q, authService) {
   var deferred = $q.defer();
 
   authService.isLoggedIn().then(function(data) {
-    if (data.status == 'LOGGED_IN') {
+    if (data.authoricated) {
       deferred.resolve();
     } else {
       deferred.reject();

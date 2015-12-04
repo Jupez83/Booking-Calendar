@@ -5,6 +5,7 @@ myApp.controller('authController', function($scope, $state, authService) {
     var loginData = {
       username:$scope.auth.username,
       password:$scope.auth.password,
+      remember:$scope.auth.remember,
     };
 
     console.log('loginData', loginData);
