@@ -9,10 +9,3 @@ mongoose.connect(MONGO_URL, function(err) {
     console.log('Connected');
   }
 });
-
-var User = mongoose.model('user', {
-  username: {type: String, required: true},
-  password: {type: String, required: true},
-});
-
-exports.User = User;

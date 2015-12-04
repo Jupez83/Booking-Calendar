@@ -1,27 +1,46 @@
 var db = require('./database');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
 
-exports.login = function(req, res) {
-  db.User.findOne({username: req.body.username, password: req.body.password}, function(err, data) {
+var SALT_WORK_FACTOR = 10;
+
+var UserSchema = new Schema({
+  username: {type: String, required: true, index: {unique: true}},
+  password: {type: String, required: true},
+});
+
+UserSchema.pre('save', function(next) {
+  var _this = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!_this.isModified('password')) {
+    return next();
+  }
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) {
-      res.send({status:err});
-    } else {
-      if (data) {
-        req.session.username = data.username;
-        res.send({status:'OK'});
-      } else {
-        res.send({status:'FAILED'});
+      return next(err);
+    }
+
+    // hash the password along with our new salt
+    bcrypt.hash(_this.password, salt, function(err, hash) {
+      if (err) {
+        return next(err);
       }
-    }
+
+      // override the cleartext password with the hashed one
+      _this.password = hash;
+      next();
+    });
+  });
+});
+
+UserSchema.methods.validPassword = function(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    callback(isMatch);
   });
 };
 
-exports.register = function(req, res) {
-  var user = new db.User(req.body);
-  user.save(function(err) {
-    if (err) {
-      res.send({status:'FAILED'});
-    } else {
-      res.send({status:'OK'});
-    }
-  });
-};
+exports.User = mongoose.model('user', UserSchema);
