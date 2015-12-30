@@ -1,4 +1,5 @@
-myApp.controller('authController', function($scope, $state, authService) {
+module.exports = function($scope, $state, authService) {
+//myApp.controller('authController', function($scope, $state, authService) {
   $scope.auth = {};
 
   $scope.auth.login = function() {
@@ -35,4 +36,4 @@ myApp.controller('authController', function($scope, $state, authService) {
       }
     });
   };
-});
+};

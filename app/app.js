@@ -1,4 +1,16 @@
+require('jquery');
+//require('bootstrap');
+require('moment');
+require('fullcalendar');
+
+require('angular');
+require('angular-resource');
+require('angular-ui-router');
+
 var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
+
+myApp.factory('authService', require('./components/authentication/authService.js'));
+myApp.controller('authController', require('./components/authentication/authController.js'));
 
 var isLoggedIn = function($q, authService) {
   var deferred = $q.defer();
@@ -34,6 +46,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     .state('main', {
       url: '/main',
       templateUrl: 'components/main.html',
+      //controller: 'mainController',
       resolve: {loggedIn: isLoggedIn},
     });
 });

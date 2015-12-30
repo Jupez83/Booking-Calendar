@@ -1,4 +1,5 @@
-myApp.factory('authService', function($resource) {
+module.exports = function($resource) {
+//myApp.factory('authService', function($resource) {
   var factory = {};
 
   factory.loggedIn = false;
@@ -19,4 +20,4 @@ myApp.factory('authService', function($resource) {
   };
 
   return factory;
-});
+};
