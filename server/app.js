@@ -8,6 +8,8 @@ var uuid = require('node-uuid');
 var auth = require('./server_modules/authentication');
 
 var PUBLIC_DIR = '../app';
+var MODULES_DIR = '../node_modules';
+
 var SECRET_TOKEN = uuid.v4();
 
 var app = express();
@@ -18,6 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, PUBLIC_DIR)));
+app.use('/modules', express.static(path.join(__dirname, MODULES_DIR)));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
