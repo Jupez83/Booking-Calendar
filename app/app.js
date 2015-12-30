@@ -11,6 +11,7 @@ var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
 
 myApp.factory('authService', require('./components/authentication/authService.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
+myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
 
 var isLoggedIn = function($q, authService) {
   var deferred = $q.defer();
@@ -43,10 +44,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'components/authentication/register.html',
       controller: 'authController',
     })
-    .state('main', {
-      url: '/main',
-      templateUrl: 'components/main.html',
-      //controller: 'mainController',
+    .state('calendar', {
+      url: '/calendar',
+      templateUrl: 'components/calendar/calendar.html',
+      controller: 'calendarController',
       resolve: {loggedIn: isLoggedIn},
     });
 });

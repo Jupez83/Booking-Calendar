@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Calendar test</title>
+
+  <!-- include stylesheets -->
+  <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css' />
+  <script src='./bower_components/jquery/dist/jquery.min.js'></script>
+  <script src='./bower_components/moment/min/moment.min.js'></script>
+  <script src='./bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+</head>
+<body>
+
+  <div id='calendar'></div>
+
+  <script>
+  $(document).ready(function() {
+    console.log("ready");
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+      // put your options and callbacks here
+
+      weekends: true, // will hide Saturdays and Sundays
+      dayClick: function() {
+        alert('a day has been clicked!');
+        // Move to next month
+        //$('#calendar').fullCalendar('next');
+      }
+    })
+  });
+
+  </script>
+</body>
+</html>
