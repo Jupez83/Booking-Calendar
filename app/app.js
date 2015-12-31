@@ -10,13 +10,16 @@ require('angular-ui-router');
 var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
 
 myApp.factory('authService', require('./components/authentication/authService.js'));
+myApp.controller('mainController', require('./mainController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
 
-var isLoggedIn = function($q, authService) {
+var isLoggedIn = function($rootScope, $q, authService) {
   var deferred = $q.defer();
 
   authService.isLoggedIn().then(function(data) {
+    $rootScope.loginData.loggedIn = data.authoricated;
+
     if (data.authoricated) {
       deferred.resolve();
     } else {
@@ -48,6 +51,18 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/calendar',
       templateUrl: 'components/calendar/calendar.html',
       controller: 'calendarController',
+      resolve: {loggedIn: isLoggedIn},
+    })
+    .state('settings', {
+      url: '/settings',
+      //templateUrl: 'components/calendar/calendar.html',
+      //controller: 'calendarController',
+      resolve: {loggedIn: isLoggedIn},
+    })
+    .state('profile', {
+      url: '/profile',
+      //templateUrl: 'components/calendar/calendar.html',
+      //controller: 'calendarController',
       resolve: {loggedIn: isLoggedIn},
     });
 });
