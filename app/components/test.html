@@ -1,0 +1,54 @@
+<div class="row">
+  <form>
+
+    <input type="button" ng-click="getAllCalendars()" value="List all calendars">
+    <br/><br/>
+
+    <input type="text" ng-model="calid1" placeholder="cal id">
+    <input type="button" ng-click="getCalendar(calid1)" value="Get calendar">
+    <br/><br/>
+
+    <input type="text" ng-model="caltitle2" placeholder="cal title">
+    <input type="button" ng-click="addCalendar(caltitle2)" value="Add calendar">
+    <br/><br/>
+
+    <input type="text" ng-model="calid3" placeholder="cal id">
+    <input type="text" ng-model="caltitle3" placeholder="cal title">
+    <input type="button" ng-click="updateCalendar(calid3,caltitle3)" value="Update calendar">
+    <br/><br/>
+
+    <input type="text" ng-model="calid4" placeholder="cal id">
+    <input type="button" ng-click="deleteCalendar(calid4)" value="Delete calendar">
+    <br/><br/>
+
+    <input type="text" ng-model="calid5" placeholder="cal id">
+    <input type="button" ng-click="getAllCalendarEvents(calid5)" value="Get all events">
+    <br/><br/>
+
+    <input type="text" ng-model="calid6" placeholder="cal id">
+    <input type="text" ng-model="eventid6" placeholder="event id">
+    <input type="button" ng-click="getCalendarEvent(calid6,eventid6)" value="Get event">
+    <br/><br/>
+
+    <input type="datetime-local" ng-model="teststart7" />
+    <input type="datetime-local" ng-model="teststop7" />
+    <input type="text" ng-model="calid7" placeholder="cal id">
+    <input type="text" ng-model="eventsubject7" placeholder="event subject">
+    <input type="button" ng-click="addCalendarEvent(calid7,eventsubject7,teststart7,teststop7)" value="Add event">
+    <br/><br/>
+
+    <input type="datetime-local" ng-model="teststart8" />
+    <input type="datetime-local" ng-model="teststop8" />
+    <input type="text" ng-model="calid8" placeholder="cal id">
+    <input type="text" ng-model="eventid8" placeholder="event id">
+    <input type="text" ng-model="eventsubject8" placeholder="event subject">
+    <input type="button" ng-click="updateCalendarEvent(calid8,eventid8,eventsubject8,teststart8,teststop8)" value="Update event">
+    <br/><br/>
+
+    <input type="text" ng-model="calid9" placeholder="cal id">
+    <input type="text" ng-model="eventid9" placeholder="event id">
+    <input type="button" ng-click="deleteCalendarEvent(calid9,eventid9)" value="Delete event">
+    <br/><br/>
+
+  </form>
+</div>

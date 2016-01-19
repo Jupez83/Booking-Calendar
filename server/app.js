@@ -5,7 +5,7 @@ var path = require('path');
 var passport = require('passport');
 var uuid = require('node-uuid');
 
-var auth = require('./server_modules/authentication');
+var rest = require('./server_modules/rest');
 
 var PUBLIC_DIR = '../app';
 var MODULES_DIR = '../node_modules';
@@ -25,7 +25,7 @@ app.use('/modules', express.static(path.join(__dirname, MODULES_DIR)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use('/auth', auth);
+app.use('/', rest);
 
 app.get('/logout', function(req, res) {
   req.logout();

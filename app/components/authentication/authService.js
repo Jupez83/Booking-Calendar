@@ -5,17 +5,17 @@ module.exports = function($resource) {
   factory.loggedIn = false;
 
   factory.isLoggedIn = function() {
-    var req = $resource('auth/status', {}, {get: {method:'GET'}});
+    var req = $resource('/auth/status', {});
     return req.get().$promise;
   };
 
   factory.register = function(registerData) {
-    var req = $resource('auth/register', {}, {post: {method:'POST'}});
+    var req = $resource('/auth/register', {}, {'post': {method:'POST'}});
     return req.post(registerData).$promise;
   };
 
   factory.login = function(loginData) {
-    var req = $resource('auth/login', {}, {post: {method:'POST'}});
+    var req = $resource('/auth/login', {}, {'post': {method:'POST'}});
     return req.post(loginData).$promise;
   };
 

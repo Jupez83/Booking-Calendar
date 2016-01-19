@@ -12,7 +12,9 @@ var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
 myApp.factory('authService', require('./components/authentication/authService.js'));
 myApp.controller('mainController', require('./mainController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
+myApp.factory('calendarService', require('./components/calendar/calendarService.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
+myApp.controller('testController', require('./components/testController.js'));
 
 var isLoggedIn = function($rootScope, $q, authService) {
   var deferred = $q.defer();
@@ -32,7 +34,7 @@ var isLoggedIn = function($rootScope, $q, authService) {
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
 
-  // For any unmatched url, redirect to /state1
+  // For any unmatched url, redirect to /login
   $urlRouterProvider.otherwise('/login');
 
   // Now set up the states
@@ -63,6 +65,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/profile',
       //templateUrl: 'components/calendar/calendar.html',
       //controller: 'calendarController',
+      resolve: {loggedIn: isLoggedIn},
+    })
+    .state('test', {
+      url: '/test',
+      templateUrl: 'components/test.html',
+      controller: 'testController',
       resolve: {loggedIn: isLoggedIn},
     });
 });

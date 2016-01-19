@@ -1,5 +1,4 @@
-var router = require('express').Router();
-var userdb = require('./userdb.js');
+var userdb = require('./database').User;
 var passport = require('passport');
 
 var COOKIE_MAX_AGE        = 14 * 24 * 60 * 60 * 1000; // 14 days
@@ -11,8 +10,7 @@ var generateRes = function(status, info) {
   return {status: status, message: msg};
 };
 
-/* Handle login requests */
-router.post('/login', function(req, res) {
+exports.login = function(req, res) {
   console.log('login');
 
   passport.authenticate('local', function(err, user, info) {
@@ -34,31 +32,27 @@ router.post('/login', function(req, res) {
       return res.send(generateRes(STATUS_SUCCEED));
     });
   })(req, res);
-});
+};
 
-/* Handle registeration requests */
-router.post('/register', function(req, res) {
+exports.register = function(req, res) {
   console.log('/register');
 
-  var user = new userdb.User(req.body);
+  var user = new userdb(req.body);
   user.save(function(err) {
     if (err) {
-      res.send({status: STATUS_FAILED});
+      res.send(generateRes(STATUS_FAILED, err));
     } else {
-      res.send({status: STATUS_SUCCEED});
+      res.send(generateRes(STATUS_SUCCEED));
     }
   });
-});
+};
 
-/* Handle status requests */
-router.get('/status', function(req, res) {
-  console.log('/status');
+exports.authStatus = function(req, res) {
+  console.log('/status', req.user);
 
   if (req.isAuthenticated()) {
     res.send({authoricated: true});
   } else {
     res.send({authoricated: false});
   }
-});
-
-module.exports = router;
+};

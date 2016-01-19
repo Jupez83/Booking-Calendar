@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var userdb = require('./userdb.js');
+var userdb = require('./database').User;
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport) {
@@ -8,7 +8,7 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    userdb.User.findById(id, function(err, user) {
+    userdb.findById(id, function(err, user) {
       done(err, user);
     });
   });
@@ -18,7 +18,7 @@ module.exports = function(passport) {
       passwordField: 'password',
     },
     function(username, password, done) {
-      userdb.User.findOne({username: username}, function(err, user) {
+      userdb.findOne({username: username}, function(err, user) {
         if (err) {
           return done(err);
         }
