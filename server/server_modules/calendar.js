@@ -21,7 +21,7 @@ exports.getAllCalendars = function(req, res) {
     if (err) {
       res.send(generateRes(STATUS_FAILED, err));
     } else {
-      res.send(data);
+      res.send({data: data});
     }
   });
 };
@@ -39,7 +39,7 @@ exports.getCalendar = function(req, res) {
     if (err) {
       res.send(generateRes(STATUS_FAILED, err));
     } else {
-      res.send(data);
+      res.send({data: data});
     }
   });
 };

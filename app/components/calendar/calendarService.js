@@ -4,7 +4,7 @@ module.exports = function($resource) {
   factory.getAllCalendars = function() {
     console.log("getAllCalendars");
     var req = $resource('/calendar', {}, {});
-    return req.query().$promise;
+    return req.get().$promise;
   };
 
   factory.getCalendar = function(calId) {
