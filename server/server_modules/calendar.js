@@ -52,11 +52,11 @@ exports.addCalendar = function(req, res) {
 
   var temp = new caldb(req.body);
   temp.users.push(req.user._id);
-  temp.save(function(err) {
+  temp.save(function(err, data) {
     if (err) {
       res.send(generateRes(STATUS_FAILED, err));
     } else {
-      res.send(generateRes(STATUS_SUCCEED));
+      res.send({status: STATUS_SUCCEED, _id: data._id});
     }
   });
 };
