@@ -6,14 +6,20 @@ require('fullcalendar');
 require('angular');
 require('angular-resource');
 require('angular-ui-router');
+require('lodash');
 
 var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
 
+myApp.directive('modal', require('./shared/modal/modalDirective.js'));
+myApp.directive('calendar', require('./components/calendar/calendarDirective.js'));
+
 myApp.factory('authService', require('./components/authentication/authService.js'));
+myApp.factory('calendarService', require('./components/calendar/calendarService.js'));
+
 myApp.controller('mainController', require('./mainController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
-myApp.factory('calendarService', require('./components/calendar/calendarService.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
+myApp.controller('newCalendarController', require('./components/calendar/newCalendarController.js'));
 myApp.controller('testController', require('./components/testController.js'));
 
 var isLoggedIn = function($rootScope, $q, authService) {
@@ -49,8 +55,14 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'components/authentication/register.html',
       controller: 'authController',
     })
+    .state('newCalendar', {
+      url: '/calendar/new',
+      templateUrl: 'components/calendar/newCalendar.html',
+      controller: 'newCalendarController',
+      resolve: {loggedIn: isLoggedIn},
+    })
     .state('calendar', {
-      url: '/calendar',
+      url: '/calendar/:calendarId',
       templateUrl: 'components/calendar/calendar.html',
       controller: 'calendarController',
       resolve: {loggedIn: isLoggedIn},
