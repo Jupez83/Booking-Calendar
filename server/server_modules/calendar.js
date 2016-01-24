@@ -151,7 +151,7 @@ exports.addCalendarEvent = function(req, res) {
   }
 
   var temp = new eventdb(req.body);
-  temp.save(function(err) {
+  temp.save(function(err, data) {
     if (err) {
       res.send(generateRes(STATUS_FAILED, err));
     } else {
@@ -162,7 +162,7 @@ exports.addCalendarEvent = function(req, res) {
         if (err) {
           res.send(generateRes(STATUS_FAILED, err));
         } else {
-          res.send(generateRes(STATUS_SUCCEED));
+          res.send({status: STATUS_SUCCEED, _id: data._id});
         }
       });
     }
