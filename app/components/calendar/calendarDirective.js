@@ -10,8 +10,7 @@ module.exports = function() {
       'calendarEvents':'=events',
     },
     link: function postLink($scope, element, attrs) {
-      $scope.$watch('calendarEvents', function() {
-        console.log("events changed!", $scope.calendarEvents);
+      $scope.$watchCollection('calendarEvents', function() {
         $('#calendar').fullCalendar('removeEvents');
         $('#calendar').fullCalendar('addEventSource', $scope.calendarEvents);
         $('#calendar').fullCalendar('rerenderEvents');
