@@ -1,5 +1,4 @@
 module.exports = function($resource) {
-//myApp.factory('authService', function($resource) {
   var factory = {};
 
   factory.loggedIn = false;

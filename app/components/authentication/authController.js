@@ -13,7 +13,7 @@ module.exports = function($scope, $state, authService) {
 
     authService.login(loginData).then(function(data) {
       if (data.status === 'OK') {
-        $state.go('calendar');
+        $scope.$parent.makeLogin();
       } else {
         $('.message').text(data.status);
       }
