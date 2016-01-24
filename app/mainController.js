@@ -7,7 +7,7 @@ module.exports = function($rootScope, $scope, $state, $stateParams, $q, authServ
 
     /* Forward to the calendar page if user has been logged in */
     if (data.authoricated) {
-      $state.go('calendar');
+      $scope.makeLogin();
     }
   });
 
