@@ -60,7 +60,14 @@
         </div>
     </div>
 
-    <input type="button" class="btn btn-default" ng-click="addCalendarEvent(events)" value="Add event" />
-    <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
+    <div ng-hide="events.editMode">
+      <input type="button" class="btn btn-primary" ng-click="addOrUpdateCalendarEvent(events)" value="Add" />
+      <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
+    </div>
+    <div ng-show="events.editMode">
+      <input type="button" class="btn btn-primary" ng-click="addOrUpdateCalendarEvent(events)" value="Save" />
+      <input ng-show="events.editMode" type="button" class="btn btn-danger" ng-click="deleteCalendarEvent(events)" value="Delete" />
+      <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
+    </div>
   </form>
 </modal>

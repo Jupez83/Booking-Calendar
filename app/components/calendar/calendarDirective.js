@@ -25,6 +25,8 @@ module.exports = function() {
           right: 'month, agendaWeek, agendaDay'
         },
         editable: true,
+        ignoreTimezone: false,
+        timezone: 'local',
         eventLimit: false, // allow "more" link when too many events
         dayClick: function(data) {
           $scope.dayClickHandler({data:data});
