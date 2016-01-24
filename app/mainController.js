@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $state, $stateParams, $q, authService, calendarService) {
+module.exports = function($rootScope, $scope, $state, $q, authService, calendarService) {
   $rootScope.loginData = {};
   $scope.calendars = [];
 
@@ -40,13 +40,13 @@ module.exports = function($rootScope, $scope, $state, $stateParams, $q, authServ
     return deferred.promise;
   }
 
-  $scope.$on('calendarListChanged', function() {
+  $scope.$on('calendarListChanged', function(event, data) {
     console.log('calendarListChanged');
     updateCalendarList().then(function() {
       if (_.isEmpty($scope.calendars)) {
         $state.go('newCalendar');
       } else {
-        if (!_.some($scope.calendars, ['_id', $stateParams.calendarId])) {
+        if (!_.some($scope.calendars, ['_id', data.calendarId])) {
           $state.go('calendar', {calendarId: $scope.calendars[0]._id});
         }
       }

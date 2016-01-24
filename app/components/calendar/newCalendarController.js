@@ -8,7 +8,7 @@ module.exports = function($scope, $state, calendarService) {
     calendarService.addCalendar(calData).then(function(data) {
       if (data.status === 'OK') {
         $state.go('calendar', {calendarId: data._id});
-        $scope.$emit('calendarListChanged');
+        $scope.$emit('calendarListChanged', {calendarId: data._id});
       }
     });
   };

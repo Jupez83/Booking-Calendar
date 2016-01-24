@@ -47,7 +47,7 @@ module.exports = function($scope, $state, $stateParams, calendarService) {
 
   $scope.deleteCalendar = function() {
     calendarService.deleteCalendar($scope.calendarId).then(function(data) {
-      $scope.$emit('calendarListChanged');
+      $scope.$emit('calendarListChanged', {calendarId: $scope.calendarId});
     });
   };
 
