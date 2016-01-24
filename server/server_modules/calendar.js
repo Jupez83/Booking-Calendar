@@ -17,7 +17,7 @@ exports.getAllCalendars = function(req, res) {
 
   var query = {users: {$in: [req.user._id]}};
 
-  caldb.find(query).populate('events').exec(function(err, data) {
+  caldb.find(query).select('_id title').exec(function(err, data) {
     if (err) {
       res.send(generateRes(STATUS_FAILED, err));
     } else {
