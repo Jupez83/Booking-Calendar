@@ -1,6 +1,6 @@
 var moment=require('moment');
 
-module.exports = function($scope, calendarService) {
+module.exports = function($scope, calendarService, authService) {
 
   $scope.getAllCalendars = function() {
     calendarService.getAllCalendars().then(function(data){
@@ -78,6 +78,29 @@ module.exports = function($scope, calendarService) {
 
   $scope.deleteCalendarEvent = function(calId, eventId) {
     calendarService.deleteCalendarEvent(calId, eventId).then(function(data){
+      console.log("returned", data);
+    });
+  };
+
+  $scope.getUser = function() {
+    authService.getUser().then(function(data){
+      console.log("returned", data);
+    });
+  };
+
+  $scope.updateUser = function(username, password) {
+    var userData = {
+      username: username,
+      password: password
+    };
+
+    authService.updateUser(userData).then(function(data){
+      console.log("returned", data);
+    });
+  };
+
+  $scope.deleteUser = function() {
+    authService.deleteUser().then(function(data){
       console.log("returned", data);
     });
   };

@@ -20,12 +20,19 @@ mongoose.connect(MONGO_URL, function(err) {
 var UserSchema = new Schema({
   username: {type: String, required: true, index: {unique: true}},
   password: {type: String, required: true},
+  firstName: {type: String},
+  lastName: {type: String},
+  address: {type: String},
+  city: {type: String},
+  country: {type: String}
 });
 
 var eventSchema = new Schema({
   title: {type: String, required: true},
   start: {type: Date, required: true},
-  end: {type: Date}
+  end: {type: Date},
+  textColor: {type: String},
+  backgroundColor: {type: String}
 });
 
 var calendarSchema = new Schema({

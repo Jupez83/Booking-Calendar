@@ -1,6 +1,7 @@
 <div class="row">
   <form>
 
+    <h3>Calendars</h3>
     <input type="button" ng-click="getAllCalendars()" value="List all calendars">
     <br/><br/>
 
@@ -48,6 +49,16 @@
     <input type="text" ng-model="calid9" placeholder="cal id">
     <input type="text" ng-model="eventid9" placeholder="event id">
     <input type="button" ng-click="deleteCalendarEvent(calid9,eventid9)" value="Delete event">
+    <br/><br/>
+
+    <h3>User authentication</h3>
+    <input type="button" ng-click="getUser()" value="Get user">
+    <br/><br/>
+    <input type="text" ng-model="username1" placeholder="user name">
+    <input type="text" ng-model="userpw1" placeholder="user password">
+    <input type="button" ng-click="updateUser(username1,userpw1)" value="Update user">
+    <br/><br/>
+    <input type="button" ng-click="deleteUser()" value="Delete user">
     <br/><br/>
 
   </form>

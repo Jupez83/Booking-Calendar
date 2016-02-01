@@ -56,3 +56,45 @@ exports.authStatus = function(req, res) {
     res.send({authoricated: false});
   }
 };
+
+exports.getUser = function(req, res) {
+  var query = {_id: req.user._id};
+
+  userdb.findOne(query, function(err, data) {
+    if (err) {
+      res.send(generateRes(STATUS_FAILED, err));
+    } else {
+      res.send({data: data});
+    }
+  });
+};
+
+exports.updateUser = function(req, res) {
+  var query = {_id: req.user._id};
+
+  userdb.findOne(query, function (err, doc){
+    for (var key in req.body) {
+      doc[key] = req.body[key];
+    }
+
+    doc.save(function(err) {
+      if (err) {
+        res.send(generateRes(STATUS_FAILED, err));
+      } else {
+        res.send(generateRes(STATUS_SUCCEED));
+      }
+    });
+  });
+};
+
+exports.deleteUser = function(req, res) {
+  var query = {_id: req.user._id};
+
+  userdb.remove(query, function(err) {
+    if (err) {
+      res.send(generateRes(STATUS_FAILED, err));
+    } else {
+      res.send(generateRes(STATUS_SUCCEED));
+    }
+  });
+};

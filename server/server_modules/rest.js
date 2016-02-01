@@ -16,6 +16,18 @@ router.get('/auth/status', function(req, res) {
   auth.authStatus(req, res);
 });
 
+router.get('/user', function(req, res) {
+  auth.getUser(req, res);
+});
+
+router.put('/user', function(req, res) {
+  auth.updateUser(req, res);
+});
+
+router.delete('/user', function(req, res) {
+  auth.deleteUser(req, res);
+});
+
 //************ REST API for calendar handlers **************//
 
 router.get('/calendar', function(req, res) {

@@ -20,6 +20,7 @@ myApp.controller('mainController', require('./mainController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
 myApp.controller('newCalendarController', require('./components/calendar/newCalendarController.js'));
+myApp.controller('profileController', require('./components/profile/profileController.js'));
 myApp.controller('testController', require('./components/testController.js'));
 
 var isLoggedIn = function($rootScope, $q, authService) {
@@ -75,8 +76,8 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('profile', {
       url: '/profile',
-      //templateUrl: 'components/calendar/calendar.html',
-      //controller: 'calendarController',
+      templateUrl: 'components/profile/profile.html',
+      controller: 'profileController',
       resolve: {loggedIn: isLoggedIn},
     })
     .state('test', {
