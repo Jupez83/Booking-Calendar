@@ -8,7 +8,9 @@ require('angular-resource');
 require('angular-ui-router');
 require('lodash');
 
-var myApp = angular.module('root_module', ['ui.router', 'ngResource']);
+var uibs = require('angular-ui-bootstrap');
+
+var myApp = angular.module('root_module', ['ui.router', 'ngResource', uibs]);
 
 myApp.directive('modal', require('./shared/modal/modalDirective.js'));
 myApp.directive('calendar', require('./components/calendar/calendarDirective.js'));
@@ -17,6 +19,8 @@ myApp.factory('authService', require('./components/authentication/authService.js
 myApp.factory('calendarService', require('./components/calendar/calendarService.js'));
 
 myApp.controller('mainController', require('./mainController.js'));
+myApp.controller('profileController', require('./components/profile/profileController.js'));
+myApp.controller('passwordController', require('./components/authentication/passwordController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
 myApp.controller('newCalendarController', require('./components/calendar/newCalendarController.js'));
