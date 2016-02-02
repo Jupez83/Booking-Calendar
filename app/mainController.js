@@ -17,7 +17,7 @@ module.exports = function($rootScope, $scope, $state, $q, $uibModal, authService
       $scope.username = userData.data.username;
     });
 
-    updateCalendarList().then(function(data) {
+    updateCalendarList().then(function() {
       if (_.isEmpty($scope.calendars)) {
         $state.go('newCalendar');
       } else {
