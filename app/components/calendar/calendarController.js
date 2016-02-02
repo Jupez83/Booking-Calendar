@@ -1,7 +1,6 @@
 var moment=require('moment');
 
-module.exports = function($scope, $state, $stateParams, calendarService) {
-
+module.exports = function($scope, $state, $stateParams, $uibModal, calendarService) {
   $scope.calendarId = $stateParams.calendarId;
   $scope.calendar = {};
   $scope.calendarEvents = [];
@@ -15,121 +14,18 @@ module.exports = function($scope, $state, $stateParams, calendarService) {
     }
   });
 
-  $scope.showAddEvent = false;
-  $scope.toggleAddEvent = function(events) {
-    $scope.events = events;
-    $scope.showAddEvent = !$scope.showAddEvent;
-  };
-
-  $scope.cancel = function(){
-    $scope.showAddEvent = false;
-  };
-
-  $scope.addOrUpdateCalendarEvent = function(data) {
-    var startDateTime = makeDatetime(data.startDate, data.startTime);
-    var endDateTime = makeDatetime(data.endDate, data.endTime);
-
-    var eventData = {};
-    eventData.title = data.title;
-    eventData.start = startDateTime;
-    if (endDateTime !== null) {
-      eventData.end = endDateTime;
-    }
-
-    if (data.editMode) {
-      eventData.eventId = data.eventId;
-      calendarService.updateCalendarEvent($scope.calendarId, eventData.eventId, eventData).then(function(data) {
-        if (data.status === 'OK') {
-          var index = _.findIndex($scope.calendarEvents, {'eventId': eventData.eventId});
-          if (index >= 0) {
-            $scope.calendarEvents[index] = convertEvent(eventData);
-            // TODO: show success message
-          } else {
-            // TODO: handle possible error
-          }
-        }
-
-        $scope.toggleAddEvent();
-      });
-    } else {
-      calendarService.addCalendarEvent($scope.calendarId, eventData).then(function(data) {
-        if (data.status === 'OK') {
-          eventData.eventId = data._id;
-          $scope.calendarEvents.push(convertEvent(eventData));
-          // TODO: show success message
-        } else  {
-          // TODO: handle possible error
-        }
-
-        $scope.toggleAddEvent();
-      });
-    }
-  };
-
-  $scope.deleteCalendarEvent = function(data) {
-    var index = _.findIndex($scope.calendarEvents, {'eventId': data.eventId});
-    if (index >= 0) {
-      calendarService.deleteCalendarEvent($scope.calendarId, data.eventId).then(function(data){
-        if (data.status === 'OK') {
-          $scope.calendarEvents.splice(index, 1);
-          // TODO: show success message
-        } else {
-          // TODO: handle possible error
-        }
-      });
-    }
-
-    $scope.toggleAddEvent();
-  };
-
   $scope.deleteCalendar = function() {
     calendarService.deleteCalendar($scope.calendarId).then(function(data) {
       $scope.$emit('calendarListChanged', {calendarId: $scope.calendarId});
     });
   };
 
-  function convertEvent(data) {
-    var eventData = {};
-
-    for (var key in data) {
-      if (key === 'start' || key === 'end') {
-        if (moment(data[key]).isValid()) {
-          eventData[key] = moment(data[key]).format('YYYY-MM-DDTHH:mm:ss').replace('T00:00:00','');
-        }
-      } else if (key === '_id') {
-        var eventId = 'eventId';
-        eventData[eventId] = data[key];
-      } else {
-        eventData[key] = data[key];
-      }
-    }
-
-    return eventData;
-  }
-
-  function makeDatetime(date, time) {
-    var tmpDate = '';
-    var tmpTime = 'T00:00:00';
-
-    if (date && moment(date).isValid()) {
-      tmpDate = moment(date).format('YYYY-MM-DD');
-
-      if (time && moment(time).isValid()) {
-        tmpTime = moment(time).format('THH:mm:ss');
-      }
-
-      return moment(tmpDate + tmpTime).toDate();
-    }
-
-    return null;
-  }
-
   $scope.dayClickHandler = function(data) {
     console.log("dayClickHandler", data);
 
     var events = {};
     events.startDate = data.toDate();
-    $scope.toggleAddEvent(events);
+    $scope.openEventDialog(events);
   };
 
   $scope.eventClickHandler = function(data) {
@@ -158,6 +54,78 @@ module.exports = function($scope, $state, $stateParams, calendarService) {
       }
     }
 
-    $scope.toggleAddEvent(events);
+    $scope.openEventDialog(events);
   };
+
+  $scope.openEventDialog = function(data) {
+
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'components/calendar/eventDialog.html',
+      controller: 'eventController',
+      resolve: {
+        events: function () {
+          return data;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(data) {
+      var index;
+
+      console.log("eventDialog", data);
+
+      switch(data.action) {
+        case 'post':
+          if (data.status === 'OK') {
+            $scope.calendarEvents.push(convertEvent(data.eventData));
+            $scope.$broadcast('alertSuccessMsg', 'Event added successfully!');
+          } else {
+            $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during saving event!');
+          }
+          break;
+        case 'put':
+          if (data.status === 'OK') {
+            index = _.findIndex($scope.calendarEvents, {'eventId': data.eventId});
+            if (index >= 0) {
+              $scope.calendarEvents[index] = convertEvent(data.eventData);
+              $scope.$broadcast('alertSuccessMsg', 'Event updated successfully!');
+            }
+          } else {
+            $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during updating event!');
+          }
+          break;
+        case 'delete':
+          if (data.status === 'OK') {
+            index = _.findIndex($scope.calendarEvents, {'eventId': data.eventId});
+            if (index >= 0) {
+              $scope.calendarEvents.splice(index, 1);
+              $scope.$broadcast('alertSuccessMsg', 'Event deleted successfully!');
+            }
+          } else {
+            $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during deleting event!');
+          }
+          break;
+      }
+    });
+  };
+
+  function convertEvent(data) {
+    var eventData = {};
+
+    for (var key in data) {
+      if (key === 'start' || key === 'end') {
+        if (moment(data[key]).isValid()) {
+          eventData[key] = moment(data[key]).format('YYYY-MM-DDTHH:mm:ss').replace('T00:00:00','');
+        }
+      } else if (key === '_id') {
+        var eventId = 'eventId';
+        eventData[eventId] = data[key];
+      } else {
+        eventData[key] = data[key];
+      }
+    }
+
+    return eventData;
+  }
 };

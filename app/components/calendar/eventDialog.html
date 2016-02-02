@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <h3 class="modal-title">Event</h3>
+</div>
+<div class="modal-body">
+
+  <form>
+    
+    <div class="form-group">
+        <label>Subject</label>
+        <input type="text" class="form-control" placeholder="Enter event subject" ng-model="events.title" required />
+    </div>
+
+    <div class="form-group">
+        <label>Start</label>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="date" class="form-control" ng-model="events.startDate" required />
+          </div>
+          <div class="col-md-6">
+            <input type="time" class="form-control" ng-model="events.startTime" />
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>End</label>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="date" class="form-control" ng-model="events.endDate" />
+          </div>
+          <div class="col-md-6">
+            <input type="time" class="form-control" ng-model="events.endTime" />
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+          <div class="col-md-6" ng-init="textColor='#000000'">
+            <label>Text color</label><br/>
+            <input type="color" class="form-control" ng-model="textColor" />
+            <input type="text" class="form-control" ng-model="textColor" disabled="true" />
+          </div>
+          <div class="col-md-6" ng-init="backgroundColor='#1E90FF'">
+            <label>Background color</label>
+            <input type="color" class="form-control"  ng-model="backgroundColor" />
+            <input type="text" class="form-control" ng-model="backgroundColor" disabled="true" />
+          </div>
+        </div>
+    </div>
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <div ng-hide="events.editMode">
+    <input type="button" class="btn btn-primary" ng-click="addEvent(events)" value="Add" />
+    <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
+  </div>
+  <div ng-show="events.editMode">
+    <input type="button" class="btn btn-primary" ng-click="updateEvent(events)" value="Save" />
+    <input ng-show="events.editMode" type="button" class="btn btn-danger" ng-click="deleteEvent(events)" value="Delete" />
+    <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
+  </div>
+</div>
