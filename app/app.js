@@ -23,6 +23,7 @@ myApp.controller('profileController', require('./components/profile/profileContr
 myApp.controller('passwordController', require('./components/authentication/passwordController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
+myApp.controller('eventController', require('./components/calendar/eventController.js'));
 myApp.controller('newCalendarController', require('./components/calendar/newCalendarController.js'));
 myApp.controller('profileController', require('./components/profile/profileController.js'));
 myApp.controller('testController', require('./components/testController.js'));
@@ -70,12 +71,6 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/calendar/:calendarId',
       templateUrl: 'components/calendar/calendar.html',
       controller: 'calendarController',
-      resolve: {loggedIn: isLoggedIn},
-    })
-    .state('settings', {
-      url: '/settings',
-      //templateUrl: 'components/calendar/calendar.html',
-      //controller: 'calendarController',
       resolve: {loggedIn: isLoggedIn},
     })
     .state('profile', {
