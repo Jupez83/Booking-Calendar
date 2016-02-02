@@ -12,7 +12,7 @@ var uibs = require('angular-ui-bootstrap');
 
 var myApp = angular.module('root_module', ['ui.router', 'ngResource', uibs]);
 
-myApp.directive('alertMsg', require('./shared/alertMsg.js'));
+myApp.directive('alertMsg', require('./shared/alertMsgDirective.js'));
 myApp.directive('calendar', require('./components/calendar/calendarDirective.js'));
 
 myApp.factory('authService', require('./components/authentication/authService.js'));
