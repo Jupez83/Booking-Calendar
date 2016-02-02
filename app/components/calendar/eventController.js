@@ -10,6 +10,8 @@ module.exports = function ($scope, $uibModalInstance, $stateParams, events, cale
 
     var eventData = {};
     eventData.title = data.title;
+    eventData.backgroundColor = data.backgroundColor;
+    eventData.textColor = data.textColor;
     eventData.start = startDateTime;
     if (endDateTime !== null) {
       eventData.end = endDateTime;
@@ -33,6 +35,8 @@ module.exports = function ($scope, $uibModalInstance, $stateParams, events, cale
 
     var eventData = {};
     eventData.title = data.title;
+    eventData.backgroundColor = data.backgroundColor;
+    eventData.textColor = data.textColor;
     eventData.start = startDateTime;
     if (endDateTime !== null) {
       eventData.end = endDateTime;

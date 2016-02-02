@@ -2,9 +2,9 @@
   <h3 class="modal-title">Event</h3>
 </div>
 <div class="modal-body">
-
+  
   <form>
-    
+
     <div class="form-group">
         <label>Subject</label>
         <input type="text" class="form-control" placeholder="Enter event subject" ng-model="events.title" required />
@@ -36,15 +36,15 @@
 
     <div class="form-group">
         <div class="row">
-          <div class="col-md-6" ng-init="textColor='#000000'">
+          <div class="col-md-6">
             <label>Text color</label><br/>
-            <input type="color" class="form-control" ng-model="textColor" />
-            <input type="text" class="form-control" ng-model="textColor" disabled="true" />
+            <input type="color" class="form-control" ng-model="events.textColor" />
+            <input type="text" class="form-control" ng-model="events.textColor" disabled="true" />
           </div>
-          <div class="col-md-6" ng-init="backgroundColor='#1E90FF'">
+          <div class="col-md-6">
             <label>Background color</label>
-            <input type="color" class="form-control"  ng-model="backgroundColor" />
-            <input type="text" class="form-control" ng-model="backgroundColor" disabled="true" />
+            <input type="color" class="form-control"  ng-model="events.backgroundColor" />
+            <input type="text" class="form-control" ng-model="events.backgroundColor" disabled="true" />
           </div>
         </div>
     </div>

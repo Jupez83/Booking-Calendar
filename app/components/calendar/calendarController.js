@@ -25,6 +25,8 @@ module.exports = function($scope, $state, $stateParams, $uibModal, calendarServi
 
     var events = {};
     events.startDate = data.toDate();
+    events.backgroundColor = '#3366ff';
+    events.textColor = '#FFFFFF';
     $scope.openEventDialog(events);
   };
 
@@ -37,6 +39,8 @@ module.exports = function($scope, $state, $stateParams, $uibModal, calendarServi
     events.editMode = true;
     events.eventId = data.eventId;
     events.title = data.title;
+    events.backgroundColor = _.get(data, 'backgroundColor', '#3366ff');
+    events.textColor = _.get(data, 'textColor', '#FFFFFF');
 
     if (moment(data.start).isValid()) {
       events.startDate = data.start.toDate();
