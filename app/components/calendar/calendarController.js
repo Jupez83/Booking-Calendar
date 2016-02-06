@@ -1,6 +1,6 @@
 var moment=require('moment');
 
-module.exports = function($scope, $state, $stateParams, $uibModal, calendarService) {
+module.exports = /*@ngInject*/ function($scope, $state, $stateParams, $uibModal, calendarService) {
   $scope.calendarId = $stateParams.calendarId;
   $scope.calendar = {};
   $scope.calendarEvents = [];

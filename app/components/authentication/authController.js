@@ -1,5 +1,4 @@
-module.exports = function($scope, $state, authService) {
-//myApp.controller('authController', function($scope, $state, authService) {
+module.exports = /*@ngInject*/ function($scope, $state, authService) {
   $scope.auth = {};
 
   $scope.auth.login = function() {

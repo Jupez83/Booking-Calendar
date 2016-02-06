@@ -3,7 +3,7 @@ module.exports = function() {
     template: '<uib-alert dismiss-on-timeout="5000" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>',
     restrict: 'E',
     replace: true,
-    link: function postLink(scope, element, attrs) {
+    link: function(scope, element, attrs) {
       var msg = null;
 
       scope.$on('alertSuccessMsg', function(event, data) {
@@ -35,6 +35,7 @@ module.exports = function() {
       });
 
     },
+    /*@ngInject*/
     controller: function($scope) {
       $scope.alerts = [];
       $scope.closeAlert = function(index) {

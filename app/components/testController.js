@@ -1,6 +1,6 @@
 var moment=require('moment');
 
-module.exports = function($scope, calendarService, authService) {
+module.exports = /*@ngInject*/ function($scope, calendarService, authService) {
 
   $scope.getAllCalendars = function() {
     calendarService.getAllCalendars().then(function(data){

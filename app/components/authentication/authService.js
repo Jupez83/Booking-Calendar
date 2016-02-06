@@ -1,4 +1,4 @@
-module.exports = function($resource) {
+module.exports = /*@ngInject*/ function($resource) {
   var factory = {};
 
   factory.loggedIn = false;

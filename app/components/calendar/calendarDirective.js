@@ -9,13 +9,14 @@ module.exports = function() {
       'eventClickHandler':'&',
       'calendarEvents':'=events',
     },
-    link: function postLink($scope, element, attrs) {
+    link: function($scope, element, attrs) {
       $scope.$watchCollection('calendarEvents', function() {
         $('#calendar').fullCalendar('removeEvents');
         $('#calendar').fullCalendar('addEventSource', $scope.calendarEvents);
         $('#calendar').fullCalendar('rerenderEvents');
       });
     },
+    /*@ngInject*/
     controller: function($scope) {
 
       $('#calendar').fullCalendar({

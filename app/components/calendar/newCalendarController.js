@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, calendarService) {
+module.exports = /*@ngInject*/ function($scope, $state, calendarService) {
   $scope.calendar = {};
   $scope.addCalendar = function(data) {
     var calData = {

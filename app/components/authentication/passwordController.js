@@ -1,4 +1,4 @@
-module.exports = function ($scope, $uibModalInstance) {
+module.exports = /*@ngInject*/ function($scope, $uibModalInstance) {
   $scope.password = {};
 
   $scope.ok = function(data) {

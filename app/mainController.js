@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $state, $q, $uibModal, authService, calendarService) {
+module.exports = /*@ngInject*/ function($rootScope, $scope, $state, $q, $uibModal, authService, calendarService) {
   $rootScope.loginData = {};
   $scope.calendars = [];
   $scope.username = 'User';

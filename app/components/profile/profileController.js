@@ -1,4 +1,4 @@
-module.exports = function($scope, $uibModalInstance, authService) {
+module.exports = /*@ngInject*/ function($scope, $uibModalInstance, authService) {
   $scope.profile = {};
 
   authService.getUser().then(function(data) {
