@@ -4,7 +4,7 @@
   "description": "Generic booking calendar for everybody. There are many kinds of applications for the calendar. For example, the calendar will be used for manage to use of premises or appointments to diffenrent kinds of services.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./server/app.js"
   },
   "repository": {
     "type": "git",
@@ -31,22 +31,24 @@
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",
     "browserify": "^12.0.1",
-    "del": "^2.2.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "fullcalendar": "^2.5.0",
+    "jquery": "^2.1.4",
+    "lodash": "^4.2.1",
+    "moment": "^2.10.6",
+    "mongoose": "^4.2.6",
+    "node-uuid": "^1.4.7",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-ng-annotate": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.1",
-    "jquery": "^2.1.4",
-    "lodash": "^4.0.0",
-    "moment": "^2.10.6",
-    "mongoose": "^4.2.6",
-    "node-uuid": "^1.4.7",
     "nodemon": "^1.8.1",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
