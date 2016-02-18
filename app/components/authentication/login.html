@@ -1,9 +1,9 @@
-<form name="loginForm" class="form_style" novalidate>
+<form name="form" class="form_style" novalidate>
   <h2>Please sign in</h2><br/>
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" ng-model="auth.username" autofocus required/>
-    <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched">
+    <div ng-messages="form.email.$error" ng-show="form.email.$touched">
       <span ng-message="required">This is required field</span>
       <span ng-message="email">Invalid email address</span>
     </div>
@@ -11,7 +11,7 @@
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" ng-model="auth.password" required/>
-    <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
+    <div ng-messages="form.password.$error" ng-show="form.password.$touched">
       <span ng-message="required">This is required field</span>
     </div>
   </div>
@@ -20,7 +20,7 @@
     <input type="checkbox" ng-model="auth.remember"> Keep me logged in
   </label>
   </div><br/>
-  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid" ng-click="auth.login()">Login</button><br/>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="form.$invalid" ng-click="auth.login()">Login</button><br/>
   <p><a href="">Forgot password?</a></p>
   <p class="message"></p>
 </form>
