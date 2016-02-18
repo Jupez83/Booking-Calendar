@@ -8,14 +8,20 @@ module.exports = /*@ngInject*/ function($scope, $uibModalInstance, authService) 
   $scope.updateProfile = function(profileData) {
     authService.updateUser(profileData).then(function(data) {
       console.log("updateUser", data);
-      $uibModalInstance.close(data);
+      var rsp = {};
+      rsp.action = 'put';
+      rsp.status = data.status;
+      $uibModalInstance.close(rsp);
     });
   };
 
   $scope.deleteProfile = function() {
     authService.deleteUser().then(function(data) {
       console.log("deleteUser", data);
-      $uibModalInstance.close(data);
+      var rsp = {};
+      rsp.action = 'delete';
+      rsp.status = data.status;
+      $uibModalInstance.close(rsp);
     });
   };
 

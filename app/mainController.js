@@ -38,7 +38,11 @@ module.exports = /*@ngInject*/ function($rootScope, $scope, $state, $q, $uibModa
     });
 
     modalInstance.result.then(function(data) {
-      console.log("data", data);
+      if (data.status === 'OK') {
+        $scope.$broadcast('alertSuccessMsg', 'Password changed successfully!');
+      } else {
+        $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during changing password!');
+      }
     });
   };
 
@@ -50,7 +54,22 @@ module.exports = /*@ngInject*/ function($rootScope, $scope, $state, $q, $uibModa
     });
 
     modalInstance.result.then(function(data) {
-      console.log("data", data);
+      switch(data.action) {
+        case 'put':
+          if (data.status === 'OK') {
+            $scope.$broadcast('alertSuccessMsg', 'Profile updated successfully!');
+          } else {
+            $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during updating profile!');
+          }
+          break;
+        case 'delete':
+          if (data.status === 'OK') {
+            $scope.$broadcast('alertSuccessMsg', 'Profile deleted successfully!');
+          } else {
+            $scope.$broadcast('alertDangerMsg', 'Unexpected error occurred during deleting profile!');
+          }
+          break;
+      }
     });
   };
 
@@ -59,10 +78,6 @@ module.exports = /*@ngInject*/ function($rootScope, $scope, $state, $q, $uibModa
       animation: true,
       templateUrl: 'components/about/aboutDialog.html',
       controller: 'aboutController',
-    });
-
-    modalInstance.result.then(function(data) {
-      console.log("data", data);
     });
   };
 

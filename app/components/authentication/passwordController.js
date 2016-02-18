@@ -1,8 +1,12 @@
-module.exports = /*@ngInject*/ function($scope, $uibModalInstance) {
-  $scope.password = {};
+module.exports = /*@ngInject*/ function($scope, $uibModalInstance, authService) {
+  $scope.changePassword = function(newPassword) {
+    var userData = {
+      password: newPassword
+    };
 
-  $scope.ok = function(data) {
-    $uibModalInstance.close(data);
+    authService.updateUser(userData).then(function(data){
+      $uibModalInstance.close(data);
+    });
   };
 
   $scope.cancel = function () {
