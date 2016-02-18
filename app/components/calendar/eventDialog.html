@@ -2,22 +2,32 @@
   <h3 class="modal-title">Event</h3>
 </div>
 <div class="modal-body">
-  
-  <form>
+
+  <form name="form" novalidate>
 
     <div class="form-group">
         <label>Subject</label>
-        <input type="text" class="form-control" placeholder="Enter event subject" ng-model="events.title" required />
+        <input type="text" name="subject" class="form-control" placeholder="Enter event subject" ng-model="events.title" required />
+        <div ng-messages="form.subject.$error" ng-show="form.subject.$touched">
+          <span ng-message="required">This is required field</span>
+        </div>
     </div>
 
     <div class="form-group">
         <label>Start</label>
         <div class="row">
           <div class="col-md-6">
-            <input type="date" class="form-control" ng-model="events.startDate" required />
+            <input type="date" name="start_date" class="form-control" ng-model="events.startDate" required />
+            <div ng-messages="form.start_date.$error" ng-show="form.start_date.$touched">
+              <span ng-message="required">This is required field</span>
+              <span ng-message="date">Invalid date format</span>
+            </div>
           </div>
           <div class="col-md-6">
-            <input type="time" class="form-control" ng-model="events.startTime" />
+            <input type="time" name="start_time" class="form-control" ng-model="events.startTime" />
+            <div ng-messages="form.start_time.$error" ng-show="form.start_time.$touched">
+              <span ng-message="time">Invalid time format</span>
+            </div>
           </div>
         </div>
     </div>
@@ -26,10 +36,16 @@
         <label>End</label>
         <div class="row">
           <div class="col-md-6">
-            <input type="date" class="form-control" ng-model="events.endDate" />
+            <input type="date" name="end_date" class="form-control" ng-model="events.endDate" />
+            <div ng-messages="form.end_date.$error" ng-show="form.end_date.$touched">
+              <span ng-message="date">Invalid date format</span>
+            </div>
           </div>
           <div class="col-md-6">
-            <input type="time" class="form-control" ng-model="events.endTime" />
+            <input type="time" name="end_time" class="form-control" ng-model="events.endTime" />
+            <div ng-messages="form.end_time.$error" ng-show="form.end_time.$touched">
+              <span ng-message="time">Invalid time format</span>
+            </div>
           </div>
         </div>
     </div>
@@ -54,11 +70,11 @@
 </div>
 <div class="modal-footer">
   <div ng-hide="events.editMode">
-    <input type="button" class="btn btn-primary" ng-click="addEvent(events)" value="Add" />
+    <input type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="addEvent(events)" value="Add" />
     <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
   </div>
   <div ng-show="events.editMode">
-    <input type="button" class="btn btn-primary" ng-click="updateEvent(events)" value="Save" />
+    <input type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="updateEvent(events)" value="Save" />
     <input ng-show="events.editMode" type="button" class="btn btn-danger" ng-click="deleteEvent(events)" value="Delete" />
     <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel" />
   </div>

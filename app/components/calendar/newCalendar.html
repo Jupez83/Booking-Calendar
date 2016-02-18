@@ -1,8 +1,12 @@
-<form class="form_style">
+<form name="form" class="form_style" novalidate>
   <h2>New calendar</h2><br/>
   <div class="form-group">
     <label for="title">Calendar title</label>
-    <input type="text" class="form-control" id="title" placeholder="Enter title of the calendar" ng-model="calendar.title" autofocus required/>
+    <input type="text" name="title" class="form-control" id="title" placeholder="Enter title of the calendar" ng-model="calendar.title" ng-minlength="5" required autofocus/>
+    <div ng-messages="form.title.$error" ng-show="form.title.$touched">
+      <span ng-message="required">This is required field</span>
+      <span ng-message="minlength">Minimum title length is 5</span>
+    </div>
   </div><br/>
-  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="addCalendar(calendar)">Add calendar</button><br/>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="form.$invalid" ng-click="addCalendar(calendar)">Add calendar</button><br/>
 </form>
