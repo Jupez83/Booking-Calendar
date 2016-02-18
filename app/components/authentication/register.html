@@ -3,7 +3,7 @@
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" ng-model="auth.username" required/>
-    <div ng-messages="registerForm.email.$error" ng-show="registerForm.password.$touched">
+    <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched">
       <span ng-message="required">This is required field</span>
       <span ng-message="email">Invalid email address</span>
     </div>
