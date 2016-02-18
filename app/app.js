@@ -6,11 +6,12 @@ require('fullcalendar');
 require('angular');
 require('angular-resource');
 require('angular-ui-router');
+require('angular-messages');
 require('lodash');
 
 var uibs = require('angular-ui-bootstrap');
 
-var myApp = angular.module('root_module', ['ui.router', 'ngResource', uibs]);
+var myApp = angular.module('root_module', ['ui.router', 'ngResource', 'ngMessages', uibs]);
 
 myApp.directive('alertMsg', require('./shared/alertMsgDirective.js'));
 myApp.directive('formMatch', require('./shared/formMatchDirective.js'));

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Jupez83/booking_calendar#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-messages": "^1.5.0",
     "angular-resource": "^1.4.8",
     "angular-ui-bootstrap": "^1.1.1",
     "angular-ui-router": "^0.2.15",
