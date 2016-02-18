@@ -1,17 +1,29 @@
-<form class="form_style">
+<form name="registerForm" class="form_style" novalidate>
   <h2>Registration</h2><br/>
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="auth.username" required/>
+    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" ng-model="auth.username" required/>
+    <div ng-messages="registerForm.email.$error" ng-show="registerForm.password.$touched">
+      <span ng-message="required">This is required field</span>
+      <span ng-message="email">Invalid email address</span>
+    </div>
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Enter password" ng-model="auth.password" required/>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" ng-model="auth.password" ng-minlength="8" required/>
+    <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched">
+      <span ng-message="required">This is required field</span>
+      <span ng-message="minlength">Minimum password length is 8</span>
+    </div>
   </div>
   <div class="form-group">
     <label for="conf-password">Re-type password</label>
-    <input type="password" class="form-control" id="conf-password" placeholder="Re-type password" required/>
+    <input type="password" name="password2" class="form-control" id="conf-password" placeholder="Re-type password" ng-model="pass2" match="auth.password" form-match required/>
+    <div ng-messages="registerForm.password2.$error" ng-show="registerForm.password2.$touched">
+      <span ng-message="required">This is required field</span>
+      <span ng-message="match">Re-type password should match with the password</span>
+    </div>
   </div><br/>
-  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="auth.register()">Register</button><br/>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="registerForm.$invalid" ng-click="auth.register()">Register</button><br/>
   <p class="message"></p>
 </form>

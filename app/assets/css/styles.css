@@ -22,8 +22,12 @@ body {
 }
 
 .form_style {
-    width: 300px;
-    margin: 20px auto;
-    border-radius: 5px;
-    padding: 8px;
+  width: 300px;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+div[ng-messages*="error"] {
+  color: red;
 }
