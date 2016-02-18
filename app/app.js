@@ -23,6 +23,7 @@ myApp.factory('calendarService', require('./components/calendar/calendarService.
 myApp.controller('mainController', require('./mainController.js'));
 myApp.controller('profileController', require('./components/profile/profileController.js'));
 myApp.controller('passwordController', require('./components/authentication/passwordController.js'));
+myApp.controller('aboutController', require('./components/about/aboutController.js'));
 myApp.controller('authController', require('./components/authentication/authController.js'));
 myApp.controller('calendarController', require('./components/calendar/calendarController.js'));
 myApp.controller('eventController', require('./components/calendar/eventController.js'));

@@ -54,6 +54,18 @@ module.exports = /*@ngInject*/ function($rootScope, $scope, $state, $q, $uibModa
     });
   };
 
+  $scope.openAboutDialog = function() {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'components/about/aboutDialog.html',
+      controller: 'aboutController',
+    });
+
+    modalInstance.result.then(function(data) {
+      console.log("data", data);
+    });
+  };
+
   function updateCalendarList() {
     var deferred = $q.defer();
 
